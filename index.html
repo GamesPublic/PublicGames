@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Nights at Freddy's en Pantalla Completa</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #fullscreenButton {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+        }
+
+        #rotateMessage {
+            display: none;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #rotateIcon {
+            width: 100px;
+            height: 100px;
+            background: url('https://image-url.com/icon-rotate.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        #gameFrame {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="fullscreenButton" onclick="playGame()">
+        Jugar Ahora
+    </button>
+
+    <div id="rotateMessage">
+        <div id="rotateIcon"></div>
+        <p>Gira tu dispositivo para obtener la mejor experiencia de juego.</p>
+    </div>
+
+    <iframe id="gameFrame" src="" frameborder="0"></iframe>
+
+    <script>
+        function playGame() {
+            var fullscreenButton = document.getElementById('fullscreenButton');
+            var rotateMessage = document.getElementById('rotateMessage');
+            var gameFrame = document.getElementById('gameFrame');
+
+            // Solicitar pantalla completa
+            document.documentElement.requestFullscreen();
+
+            fullscreenButton.style.display = 'none';
+
+            if (window.orientation === 0 || window.orientation === 180) {
+                rotateMessage.style.display = 'block';
+            } else {
+                rotateMessage.style.display = 'none';
+                gameFrame.src = "https://lagged.com/games/fnaf/?mp_game_id=209606&mp_game_uid=five-nights-at-freddys&mp_game_url=https%3A%2F%2Fwww.minijuegos.mx%2Fjuego";
+                gameFrame.style.display = 'block';
+            }
+
+            window.addEventListener('orientationchange', function () {
+                // Comprobar la orientación después de cambiar
+                if (window.orientation === 0 || window.orientation === 180) {
+                    rotateMessage.style.display = 'block';
+                    gameFrame.style.display = 'none';
+                } else {
+                    rotateMessage.style.display = 'none';
+                    gameFrame.src = "https://lagged.com/games/fnaf/?mp_game_id=209606&mp_game_uid=five-nights-at-freddys&mp_game_url=https%3A%2F%2Fwww.minijuegos.mx%2Fjuego";
+                    gameFrame.style.display = 'block';
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
