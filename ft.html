@@ -12,46 +12,42 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+
+        #rotatedContainer {
+            width: 100vh;
+            /* Utiliza la altura de la ventana como ancho para compensar la rotación */
+            height: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(90deg);
+            transform-origin: 50% 50%;
+            border: solid 1px white;
         }
 
         #gameFrame {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            /* Utiliza el ancho del contenedor como ancho */
+            height: 100%;
+            /* Utiliza la altura del contenedor como altura */
             border: none;
         }
-
-        #rotateButton {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+        
     </style>
 </head>
 
 <body>
-    <iframe id="gameFrame"
-        src="https://lagged.com/games/fnaf/?mp_game_id=209606&mp_game_uid=five-nights-at-freddys&mp_game_url=https%3A%2F%2Fwww.minijuegos.mx%2Fjuego"
-        frameborder="0"></iframe>
-
-    <button id="rotateButton" onclick="rotateScreen()">Rotar Pantalla</button>
-
-    <script>
-        function rotateScreen() {
-            if (screen.orientation) {
-                screen.orientation.lock('landscape').then(() => {
-                    // La pantalla se ha bloqueado en orientación apaisada
-                }).catch((error) => {
-                    console.error('No se pudo bloquear la orientación:', error);
-                });
-            }
-        }
-    </script>
+    <div id="rotatedContainer">
+        <iframe id="gameFrame"
+            src="https://lagged.com/games/fnaf/?mp_game_id=209606&mp_game_uid=five-nights-at-freddys&mp_game_url=https%3A%2F%2Fwww.minijuegos.mx%2Fjuego"
+            frameborder="0"></iframe>
+    </div>
 </body>
 
 </html>
