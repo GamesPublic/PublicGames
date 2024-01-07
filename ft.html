@@ -24,8 +24,8 @@
 
         #rotatedContainer {
             width: 100vh;
-            height: calc(100% - 40px);
             /* Utiliza la altura de la ventana como ancho para compensar la rotación */
+            height: 100vw;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -45,18 +45,6 @@
             border: none;
         }
 
-        img {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: auto;
-            transform: rotate(90deg);
-            margin-left: 25%;
-
-            /* Asegura que la imagen esté detrás del contenido */
-        }
-
         #fullscreenButton {
             position: fixed;
             bottom: 10px;
@@ -72,9 +60,6 @@
 </head>
 
 <body>
-    <a href="market://details?id=total.games" target="_blank">
-        <img src="https://i.postimg.cc/FHsSt62d/IMG-20240103-161206-min.jpg" alt="">
-    </a>
     <div id="rotatedContainer">
         <iframe id="gameFrame"
             src="https://lagged.com/games/fnaf/?mp_game_id=209606&mp_game_uid=five-nights-at-freddys&mp_game_url=https%3A%2F%2Fwww.minijuegos.mx%2Fjuego"
