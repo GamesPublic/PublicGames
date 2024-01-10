@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* Estilos del banner y la página principal (los mismos que antes) */
         body,
         html {
             margin: 0;
@@ -20,11 +21,11 @@
             align-items: center;
             justify-content: center;
             background-color: black;
+            font-family: sans-serif;
         }
 
         #rotatedContainer {
             width: 100vh;
-            /* Utiliza la altura de la ventana como ancho para compensar la rotación */
             height: 100vw;
             overflow: hidden;
             display: flex;
@@ -34,14 +35,11 @@
             transform-origin: 50% 50%;
             border: solid 1px white;
             position: relative;
-            /* Necesario para posicionar el botón correctamente */
         }
 
         #gameFrame {
             width: 100%;
-            /* Utiliza el ancho del contenedor como ancho */
             height: 100%;
-            /* Utiliza la altura del contenedor como altura */
             border: none;
         }
 
@@ -54,12 +52,121 @@
             cursor: pointer;
             color: white;
             font-size: 20px;
-            /* Tamaño de la fuente ajustado para mayor visibilidad */
+        }
+
+        #bannerContainer {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: url(https://i.postimg.cc/63hVTVrt/IMG-20230914-153615.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-color: black !important;
+            color: black !important;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: 999;
+            display: none;
+            /* Ocultar el banner inicialmente */
+            animation: fadeIn 1s ease-in-out;
+            /* Añadida animación de aparición */
+        }
+
+        #bannerContent {
+            display: flex;
+            align-items: center;
+        }
+
+        #bannerImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #bannerDescription {
+            flex-grow: 1;
+            text-align: left;
+            color: white;
+        }
+
+        #bannerButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #closeButton {
+            cursor: pointer;
+            font-size: 9vw;
+            color: white;
+            position: absolute;
+            margin-left: 91%;
+            margin-top: -6px;
+        }
+
+        h3 {
+            display: block;
+            font-size: 1em;
+            margin-block-start: 0em;
+            margin-block-end: 0em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div id="bannerContainer">
+        <div id="bannerContent">
+            <div id="bannerDescription">
+                <h3>¡Descarga la App con más juegos!</h3>
+                <p style="font-family: sans-serif; font-size: 2vh;">Puedes encontrar más juegos sin instalar y descargar
+                    nada.</p>
+                <a id="bannerButton" href="market://details?id=total.games" style="bottom: 0px;"><i
+                        class="fab fa-android" style="margin-left: -8px;"></i>
+                    Descargar Total Games</a>
+            </div>
+            <img id="bannerImage" src="https://i.postimg.cc/9M4d7FRN/IMG-20230915-214455.png"
+                style="width: 80px; height: 80px;" alt="Banner Image">
+            <span id="closeButton" style="top: 0;" onclick="closeBanner()">&times;</span>
+        </div>
+    </div>
+
     <div id="rotatedContainer">
         <iframe id="gameFrame"
             src="https://lagged.com/games/fnaf/?mp_game_id=209606&mp_game_uid=five-nights-at-freddys&mp_game_url=https%3A%2F%2Fwww.minijuegos.mx%2Fjuego"
@@ -82,6 +189,27 @@
                 document.exitFullscreen();
             }
         }
+
+        function closeBanner() {
+            document.getElementById('bannerContainer').style.animation = 'fadeOut 1s ease-in-out'; // Añadida animación de desaparición
+            setTimeout(function () {
+                document.getElementById('bannerContainer').style.display = 'none';
+                document.getElementById('bannerContainer').style.animation = 'none'; // Restablecer la animación
+                // Mostrar el banner nuevamente después de 1 minuto
+                setTimeout(function () {
+                    showBanner();
+                }, 60000);
+            }, 900); // Esperar 1 segundo antes de ocultar el banner
+        }
+
+        function showBanner() {
+            document.getElementById('bannerContainer').style.display = 'flex';
+        }
+
+        // Muestra el banner después de 10 segundos
+        setTimeout(function () {
+            showBanner();
+        }, 10000);
     </script>
 </body>
 
